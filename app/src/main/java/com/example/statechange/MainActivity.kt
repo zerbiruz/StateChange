@@ -2,6 +2,8 @@ package com.example.statechange
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import com.example.statechange.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +16,17 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.button.setOnClickListener {
+            binding.statusText.text = "Button Clicked"
+        }
+
+        binding.button.setOnLongClickListener(object : View.OnLongClickListener {
+            override fun onLongClick(v: View?): Boolean {
+                binding.statusText.text = "On Long Clicked"
+                return true
+            }
+        })
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
